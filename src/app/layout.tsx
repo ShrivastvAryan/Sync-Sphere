@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/ui/Navbar";
+import Footer from "@/ui/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,8 +20,9 @@ export default function RootLayout({
       <body
         className='max-w-[1600px] mx-auto bg-black text-white '
       >
-        <Navbar/>
+        
         {children}
+        
       </body>
     </html>
   );

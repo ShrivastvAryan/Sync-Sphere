@@ -2,12 +2,14 @@
 import React from 'react'
 import ProfileCard from '@/components/ProfileCard'
 import Shuffle from '@/components/Shuffle'
+import Navbar from '@/ui/Navbar'
 
 const page = () => {
   return (
 
     <>
-    <div className='text-7xl w-full flex justify-center items-center pt-10 '>
+    <Navbar/>
+   {/* <div className='text-7xl w-full flex justify-center items-center pt-4 '>
 
         <Shuffle
   text="OUR TEAM"
@@ -21,8 +23,8 @@ const page = () => {
   triggerOnce={true}
   triggerOnHover={true}
   respectReducedMotion={true}
-/>
-    </div>
+/> 
+    </div> */} 
 
     <div className='min-h-screen flex items-center justify-center bg-black gap-12'>
         <ProfileCard
@@ -39,33 +41,7 @@ const page = () => {
         showBehindGradient={true}
        />
 
-       <ProfileCard
-        name="Aryan Shrivastava"
-        title="Software Engineer"
-        handle="shrivastavaryan"
-        status="Online"
-        contactText="Contact Me"
-        avatarUrl="/aryan.jpg"
-        showUserInfo={true}
-        enableTilt={true}
-        enableMobileTilt={false}
-        onContactClick={() => console.log('Contact clicked')}
-        showBehindGradient={true}
-       />
-
-       <ProfileCard
-        name="Aryan Shrivastava"
-        title="Software Engineer"
-        handle="shrivastavaryan"
-        status="Online"
-        contactText="Contact Me"
-        avatarUrl="/aryan.jpg"
-        showUserInfo={true}
-        enableTilt={true}
-        enableMobileTilt={false}
-        onContactClick={() => console.log('Contact clicked')}
-        showBehindGradient={true}
-       />
+      
     </div>
 
     </>

@@ -1,4 +1,5 @@
 import InfiniteMenu from '@/components/InfiniteMenu';
+import Navbar from '@/ui/Navbar';
 
 const items = [
   {
@@ -29,8 +30,11 @@ const items = [
 
 export default function AboutPage() {
   return (
-    <div style={{  position: 'relative' }} className='flex h-screen w-full items-center justify-center'>
+    <>
+    <Navbar/>
+    <div style={{  position: 'relative' }} className='flex items-center justify-center'>
   <InfiniteMenu items={items}/>
 </div>
+</>
     )}
 
