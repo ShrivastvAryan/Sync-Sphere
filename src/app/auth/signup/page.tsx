@@ -1,8 +1,8 @@
 // app/signup/page.tsx
 "use client";
 
+import Galaxy from "@/components/Galaxy";
 import { useState } from "react";
-import Hyperspeed from "@/components/Hyperspeed";
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -16,8 +16,57 @@ export default function SignupPage() {
     hobbies: [] as string[],
   });
 
-  const allInterests = ["Web Development", "AI/ML", "Open Source"];
-  const allHobbies = ["Coding", "Reading", "Playing Guitar", "Football"];
+  const [step, setStep] = useState(1);
+
+ const allInterests = [
+  "Web Development",
+  "AI/ML",
+  "Open Source",
+  "Blockchain",
+  "Cloud Computing",
+  "Cybersecurity",
+  "Data Science",
+  "Mobile Apps",
+  "Gaming",
+  "UI/UX Design",
+  "Robotics",
+  "IoT",
+  "VR/AR",
+  "Quantum Computing",
+  "DevOps",
+  "Digital Marketing",
+  "Startups",
+  "Photography",
+  "3D Modeling",
+  "Entrepreneurship",
+  "Networking",
+  "Big Data"
+];
+
+const allHobbies = [
+  "Coding",
+  "Reading",
+  "Playing Guitar",
+  "Football",
+  "Basketball",
+  "Swimming",
+  "Traveling",
+  "Cooking",
+  "Gaming",
+  "Painting",
+  "Writing",
+  "Cycling",
+  "Photography",
+  "Hiking",
+  "Yoga",
+  "Dancing",
+  "Music Production",
+  "Meditation",
+  "Gardening",
+  "Sketching",
+  "Board Games",
+  "Collecting"
+];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -40,119 +89,111 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="relative  h-screen ">
-      {/* Hyperspeed background */}
-      <div className="absolute inset-0 -z-10">
-        <Hyperspeed
-          effectOptions={{
-            onSpeedUp: () => {},
-            onSlowDown: () => {},
-            distortion: 'turbulentDistortion',
-            length: 400,
-            roadWidth: 10,
-            islandWidth: 2,
-            lanesPerRoad: 4,
-            fov: 90,
-            fovSpeedUp: 150,
-            speedUp: 2,
-            carLightsFade: 0.4,
-            totalSideLightSticks: 20,
-            lightPairsPerRoadWay: 40,
-            shoulderLinesWidthPercentage: 0.05,
-            brokenLinesWidthPercentage: 0.1,
-            brokenLinesLengthPercentage: 0.5,
-            lightStickWidth: [0.12, 0.5],
-            lightStickHeight: [1.3, 1.7],
-            movingAwaySpeed: [60, 80],
-            movingCloserSpeed: [-120, -160],
-            carLightsLength: [400 * 0.03, 400 * 0.2],
-            carLightsRadius: [0.05, 0.14],
-            carWidthPercentage: [0.3, 0.5],
-            carShiftX: [-0.8, 0.8],
-            carFloorSeparation: [0, 5],
-            colors: {
-              roadColor: 0x080808,
-              islandColor: 0x0a0a0a,
-              background: 0x000000,
-              shoulderLines: 0xFFFFFF,
-              brokenLines: 0xFFFFFF,
-              leftCars: [0xD856BF, 0x6750A2, 0xC247AC],
-              rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
-              sticks: 0x03B3C3,
-            },
-          }}
-        />
+    <div className="relative w-full h-screen">
+      {/* Hyperspeed Background */}
+      
+       <div style={{ width: '100%', height: '800px', position: 'absolute'}}>
+      <Galaxy />
+       
       </div>
 
-      {/* Foreground Signup Form */}
-      <div className="relative flex items-center justify-center p-10">
+      {/* Form */}
+      <div className="relative flex items-center justify-center w-full h-full p-6">
         <form
           onSubmit={handleSubmit}
-          className="backdrop-blur-md bg-white/5 border border-white/20 rounded-3xl p-8 w-full max-w-lg space-y-6 shadow-xl text-white"
+          className="backdrop-blur-md bg-white/5 border border-white/20 rounded-3xl p-8 w-full max-w-lg space-y-6 shadow-xl text-white transition-all duration-500"
         >
           <h2 className="text-3xl font-bold text-center mb-4">Sign Up</h2>
 
-          {["user_id", "name", "age", "country", "state", "city"].map((field) => (
-            <input
-              key={field}
-              type={field === "age" ? "number" : "text"}
-              name={field}
-              placeholder={field.replace("_", " ").toUpperCase()}
-              value={formData[field as keyof typeof formData] as string | number}
-              onChange={handleChange}
-              className="w-full p-3 rounded-xl bg-white/10 border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-              required
-            />
-          ))}
-
-          <div>
-            <p className="mb-2 font-semibold text-white">Interests</p>
-            <div className="flex flex-wrap gap-3">
-              {allInterests.map((interest) => {
-                const selected = formData.interest.includes(interest);
-                return (
-                  <button
-                    type="button"
-                    key={interest}
-                    onClick={() => handleMultiSelect(interest, "interest")}
-                    className={`px-4 py-2 rounded-full border border-white/30 text-white transition-all ${
-                      selected ? "bg-white/20 backdrop-blur-md" : "hover:bg-white/10"
-                    }`}
-                  >
-                    {interest}
-                  </button>
-                );
-              })}
+          {step === 1 && (
+            <div className="space-y-4">
+              {["user_id", "name", "age", "country", "state", "city"].map((field) => (
+                <input
+                  key={field}
+                  type={field === "age" ? "number" : "text"}
+                  name={field}
+                  placeholder={field.replace("_", " ").toUpperCase()}
+                  value={formData[field as keyof typeof formData] as string | number}
+                  onChange={handleChange}
+                  className="w-full p-3 rounded-xl bg-white/10 border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                  required
+                />
+              ))}
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setStep(2)}
+                  className="bg-blue-500 hover:bg-blue-600 py-2 px-6 rounded-xl font-semibold transition"
+                >
+                  Next
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
-          <div>
-            <p className="mb-2 font-semibold text-white">Hobbies</p>
-            <div className="flex flex-wrap gap-3">
-              {allHobbies.map((hobby) => {
-                const selected = formData.hobbies.includes(hobby);
-                return (
-                  <button
-                    type="button"
-                    key={hobby}
-                    onClick={() => handleMultiSelect(hobby, "hobbies")}
-                    className={`px-4 py-2 rounded-full border border-white/30 text-white transition-all ${
-                      selected ? "bg-white/20 backdrop-blur-md" : "hover:bg-white/10"
-                    }`}
-                  >
-                    {hobby}
-                  </button>
-                );
-              })}
+          {step === 2 && (
+            <div className="space-y-4">
+              {/* Interests */}
+              <div>
+                <p className="mb-2 font-semibold text-white">Interests</p>
+                <div className="flex flex-wrap gap-3">
+                  {allInterests.map((interest) => {
+                    const selected = formData.interest.includes(interest);
+                    return (
+                      <button
+                        type="button"
+                        key={interest}
+                        onClick={() => handleMultiSelect(interest, "interest")}
+                        className={`px-4 py-2 rounded-full border border-white/30 text-white transition-all ${
+                          selected ? "bg-white/20 backdrop-blur-md" : "hover:bg-white/10"
+                        }`}
+                      >
+                        {interest}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Hobbies */}
+              <div>
+                <p className="mb-2 font-semibold text-white">Hobbies</p>
+                <div className="flex flex-wrap gap-3">
+                  {allHobbies.map((hobby) => {
+                    const selected = formData.hobbies.includes(hobby);
+                    return (
+                      <button
+                        type="button"
+                        key={hobby}
+                        onClick={() => handleMultiSelect(hobby, "hobbies")}
+                        className={`px-4 py-2 rounded-full border border-white/30 text-white transition-all ${
+                          selected ? "bg-white/20 backdrop-blur-md" : "hover:bg-white/10"
+                        }`}
+                      >
+                        {hobby}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="bg-gray-500 hover:bg-gray-600 py-2 px-6 rounded-xl font-semibold transition"
+                >
+                  Back
+                </button>
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-600 py-2 px-6 rounded-xl font-semibold transition"
+                >
+                  Submit
+                </button>
+              </div>
             </div>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 transition-colors py-3 rounded-2xl font-semibold text-white text-lg"
-          >
-            Sign Up
-          </button>
+          )}
         </form>
       </div>
     </div>
