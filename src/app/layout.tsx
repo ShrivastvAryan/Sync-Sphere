@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/ui/Navbar";
 import Footer from "@/ui/Footer";
 import Provider from "./provider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,14 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      
-      <body
-        className='max-w-[1600px] mx-auto bg-black text-white '
-      >
-        <Provider>
-        {children}
-        </Provider>
-        
+      <body className="max-w-[1600px] mx-auto bg-black text-white ">
+        <Provider>{children}</Provider>
+        <Toaster position="top-right" />
       </body>
     </html>
   );

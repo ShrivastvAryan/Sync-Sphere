@@ -1,27 +1,34 @@
 "use client";
 
-import React from 'react';
-import DotGrid from '../gsap/DotGrid';
-import StaggeredMenu from '@/gsap/Menu';
-import { Github, Twitter, Linkedin } from 'lucide-react';
-import TextType from '@/components/TextType';
+import React from "react";
+import DotGrid from "../gsap/DotGrid";
+import StaggeredMenu from "@/gsap/Menu";
+import { Github, Twitter, Linkedin } from "lucide-react";
+import TextType from "@/components/TextType";
+import { useRouter } from "next/navigation";
 
 interface BackgroundProps {}
 
 const menuItems = [
-  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
-  { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' },
+  { label: "Home", ariaLabel: "Go to home page", link: "/" },
+  { label: "About", ariaLabel: "Learn about us", link: "/about" },
+  { label: "Services", ariaLabel: "View our services", link: "/services" },
+  { label: "Contact", ariaLabel: "Get in touch", link: "/contact" },
 ];
 
 const socialItems = [
-  { label: 'Twitter', link: 'https://twitter.com', icon: Twitter },
-  { label: 'GitHub', link: 'https://github.com', icon: Github },
-  { label: 'LinkedIn', link: 'https://linkedin.com', icon: Linkedin },
+  { label: "Twitter", link: "https://twitter.com", icon: Twitter },
+  { label: "GitHub", link: "https://github.com", icon: Github },
+  { label: "LinkedIn", link: "https://linkedin.com", icon: Linkedin },
 ];
 
 const Background: React.FC<BackgroundProps> = () => {
+  const router = useRouter();
+
+  const handleButtonClick = () => {
+    router.push("/auth/signin");
+  };
+
   return (
     <div className="relative w-full h-[600px] bg-black">
       {/* DotGrid Background */}
@@ -42,21 +49,26 @@ const Background: React.FC<BackgroundProps> = () => {
 
       {/* Centered Title */}
       <div className="absolute inset-0 flex top-40 justify-center z-40">
-        <TextType 
-        text={["Welcome to ", "Sync Sphere"]}
-        typingSpeed={75}
-        pauseDuration={1500}
-        showCursor={true}
-        cursorCharacter="|"
-        className='text-7xl font-semibold'
+        <TextType
+          text={["Welcome to ", "Sync Sphere"]}
+          typingSpeed={75}
+          pauseDuration={1500}
+          showCursor={true}
+          cursorCharacter="|"
+          className="text-7xl font-semibold"
         />
 
-        <p className='text-white absolute top-32 md:top-30 font-semibold text-center w-full px-4 md:px-0 max-w-2xl  text-sm md:text-xl drop-shadow-lg'>
-            Sync Sphere connects you with like-minded people worldwide. Explore shared interests, spark conversations, and build meaningful connections. Join the sphere and sync with your tribe!
+        <p className="text-white absolute top-32 md:top-30 font-semibold text-center w-full px-4 md:px-0 max-w-2xl  text-sm md:text-xl drop-shadow-lg">
+          Sync Sphere connects you with like-minded people worldwide. Explore
+          shared interests, spark conversations, and build meaningful
+          connections. Join the sphere and sync with your tribe!
         </p>
 
-        <button className='absolute top-72 md:top-70 bg-[#00ffcc] cursor-pointer text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-shadow'>
-            Get Started
+        <button
+          className="absolute top-72 md:top-70 bg-[#00ffcc] cursor-pointer text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+          onClick={handleButtonClick}
+        >
+          Get Started
         </button>
       </div>
 

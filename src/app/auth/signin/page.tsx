@@ -47,7 +47,10 @@ export default function SigninPage() {
 
         {["user_id", "password"].map((field) => (
           <div key={field} className="flex flex-col">
-            <label className="py-2 font-semibold text-white capitalize" htmlFor={field}>
+            <label
+              className="py-2 font-semibold text-white capitalize"
+              htmlFor={field}
+            >
               {field.replace("_", " ")}
             </label>
             <input
@@ -69,6 +72,15 @@ export default function SigninPage() {
         >
           Sign In
         </button>
+        <div className="text-center">
+          <p className="text-gray-500 text-1xl">Don't have an account yet? </p>
+          <a
+            href="/auth/signup"
+            className="text-blue-500 hover:text-blue-600 text-1xl font-semibold"
+          >
+            Sign Up
+          </a>
+        </div>
       </form>
     </div>
   );
