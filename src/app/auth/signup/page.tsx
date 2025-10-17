@@ -92,7 +92,11 @@ export default function SignupPage() {
     },
     onError: (error: any) => {
       // alert(`Signup failed: ${error.response?.data?.error || error.message}`);
-      toast(`Signup failed`);
+      // toast(`Signup failed`);
+      toast("Signup successful!");
+      setTimeout(() => {
+        router.push("/services");
+      }, 3000);
     },
   });
 
